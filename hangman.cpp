@@ -1,8 +1,11 @@
 #include <iostream>
 #include "hangman.h"
 
+
+// All function definitions and declarations in header file 
 int main() {
   char response{};
+  // Declaring the game
   std::cout << "This is a game of hangman. Guess different letters to win." << std::endl;
   char hangman[7] = {'h', 'a', 'n', 'g', 'm', 'a', 'n'};
   char guessed_letters[4] = {};
@@ -10,56 +13,11 @@ int main() {
   char letter{};
   int lives{4};
   bool isThere = {false};
-  // Asking for inputs to check
-  for (int x{}; x <= 53; x++) {
-    std::cout << ' ';
-  }
-  for (int x{}; x < 7; x++){
-    std::cout << '_';
-  }
-  std::cout << std::endl;
-  int x{};
-  while (x < 6) {
-    for (int k{0}; k < 60; k++) {
-      std::cout << ' ';
-      if (x < 2) {
-        if (k == 52) {
-          std::cout << '|';
-        }
-      }
-    }
-    while (x >= 2) {
-      std::cout << ' ';
-      break;
-    }
-    std::cout << '|' << std::endl;
-    x++;
-  }
-  
-  for (int k{0}; k <= 53; k++) {
-    if (k == 52) {
-      std::cout << ' ';
-      std::cout << ' ';
-      std::cout << ' ';
-      std::cout << ' ';
-      std::cout << ' ';
-    }
-    else {
-    std::cout << ' ';
-    }
-  }
-  for (int k{0}; k <= 7; k++) {
-    std::cout << '_';
-  }
-  for (int k{0}; k <= 64; k++) {
-      if (k == 61) {
-        std::cout << ' ';
-      }
-      else {
-        std::cout << ' ';
-      }
-  }
+  // Building the hangman structure and the entire hangman
+  full();
   std::cout << ' ' << std::endl;
+  // Checking if letters correspond to a given character array with the
+  // word 'hangman'. Game terminates after four incorrect guesses
   for (int x{0};; x++) {
     std::cout << "Guess a letter" << std::endl;
     std::cin >> letter;
@@ -76,12 +34,14 @@ int main() {
         isThere = true;
         break;
       }
+      // Testing for correct and incorrect inputs 
       if (letter == hangman[y]) {
         isThere = true;
         std::cout << "Correct, guess again" << std::endl;
         break;
       }
     }
+    // Consequences for incorrect inputs, as other functions are called
     if (isThere == false) {
       std::cout << "Incorrect, guess again" << std::endl;
       lives = lives - 1;
